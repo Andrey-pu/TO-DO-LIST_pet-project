@@ -150,9 +150,8 @@ render()
 
 // o'clock
 const time = document.getElementById('time')
-
 // const greeting = document.getElementById('greeting')
-
+const shouAmPm = true
 // Show time
 function showTime() {
 	let today = new Date(),
@@ -162,7 +161,7 @@ function showTime() {
 	const amPm = hour >= 12 ? 'PM' : 'AM'
 	hour = hour % 12 || 12
 
-	time.innerHTML = `${hour}<span>:</span>${addZero(min)}`
+	time.innerHTML = `${hour}<span>:</span>${addZero(min)} ${shouAmPm ? amPm: ''}`
 	setTimeout(showTime, 60000)
 }
 
