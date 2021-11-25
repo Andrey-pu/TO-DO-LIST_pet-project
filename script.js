@@ -20,6 +20,34 @@ const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId'
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY)
 
+
+// o'clock
+const time = document.getElementById('time')
+// const greeting = document.getElementById('greeting')
+const shouAmPm = true
+// Show time
+function showTime() {
+	let today = new Date(),
+		hour = today.getHours(),
+		min = today.getMinutes()
+
+	const amPm = hour >= 12 ? 'PM' : 'AM'
+	hour = hour % 12 || 12
+
+	time.innerHTML = `${hour}<span>:</span>${addZero(min)} ${
+		shouAmPm ? amPm : ''
+	}`
+	setTimeout(showTime, 60000)
+}
+
+function addZero(n) {
+	return (parseInt(n, 10) < 10 ? '0' : '') + n
+}
+
+showTime()
+
+
+
 listsContainer.addEventListener('click', e => {
 	if (e.target.tagName.toLowerCase() === 'li') {
 		selectedListId = e.target.dataset.listId
@@ -148,25 +176,3 @@ function clearElement(element) {
 
 render()
 
-// o'clock
-const time = document.getElementById('time')
-// const greeting = document.getElementById('greeting')
-const shouAmPm = true
-// Show time
-function showTime() {
-	let today = new Date(),
-		hour = today.getHours(),
-		min = today.getMinutes()
-
-	const amPm = hour >= 12 ? 'PM' : 'AM'
-	hour = hour % 12 || 12
-
-	time.innerHTML = `${hour}<span>:</span>${addZero(min)} ${shouAmPm ? amPm: ''}`
-	setTimeout(showTime, 60000)
-}
-
-function addZero(n) {
-	return (parseInt(n, 10) < 10 ? '0' : '') + n
-}
-
-showTime()
