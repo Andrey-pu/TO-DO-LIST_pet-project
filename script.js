@@ -176,3 +176,46 @@ function clearElement(element) {
 
 render()
 
+
+// THEME
+const theme = localStorage.getItem('theme')
+
+if (theme == null) {
+	setTheme('blue')
+}else{
+	setTheme(theme)
+}
+
+
+const themeDots = document.getElementsByClassName('theme-dot')
+
+
+for (let i =0; themeDots.length > i; i++){
+	themeDots[i].addEventListener('click', function(){
+		let mode = this.dataset.mode
+		// console.log('themeDots', mode)
+		setTheme(mode)
+	})
+}
+
+function setTheme(mode) {
+	switch (mode) {
+		case 'light':
+			document.getElementById('theme-style').href = 'Theme/light.css'
+			break;
+
+		case 'blue':
+			document.getElementById('theme-style').href = 'main.css'
+			break;
+
+		case 'green':
+			document.getElementById('theme-style').href = 'Theme/green.css'
+			break;
+
+		case 'orange':
+			document.getElementById('theme-style').href = 'Theme/orange.css'
+			break;
+	}
+
+	localStorage.setItem('theme', mode)
+}
